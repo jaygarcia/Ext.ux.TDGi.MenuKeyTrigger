@@ -1,4 +1,4 @@
-Ext.ns('Ext.ux', 'Ext.ux.TDGi');
+Ext.ns('Ext.ux.TDGi');
 
 
 Ext.ux.TDGi.MenuKeyTrigger = Ext.extend(Object, {
