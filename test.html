@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>KeyNav Menu</title>
+
+<link rel="stylesheet" type="text/css" href="/ext3/resources/css/ext-all.css" />
+<script type="text/javascript" src="/ext3/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="/ext3/ext-all-debug.js"></script>
+<!--<script type="text/javascript" src="TDGi.iconSpriteMgr/icons.json.js"></script>-->
+
+<!--<script type="text/javascript" src="TDGi.iconSpriteMgr/TDGi.iconSpriteMgr.js"></script>-->
+<script type="text/javascript" src="Ext.ux.TDgi.keyNavMenu.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+
+    var handler = function(menuItem) {
+        console.info(menuItem.text);
+        var menu = Ext.getCmp('menu');
+        (function() {
+          menu.showAt([50,50]);  
+        }).defer(500);
+    };
+
+ 
+
+    var plugin = new Ext.ux.TDGi.keyNavMenu({
+        requireEnter     : false,
+        selfPropegate    : true
+    });
+    Ext.onReady(function(){
+        var editMenu = {
+            text       : '<u>E</u>dit',
+            triggerKey : 'e',
+            menu       : [
+                {
+                    text       : '<u>C</u>ut',
+                    handler    : handler,
+                    triggerKey : 'c'
+                },
+                {
+                    text       : 'C<u>o</u>py',
+                    handler    : handler,
+                    triggerKey : 'o'
+                },
+                {
+                    text       : '<u>P</u>aste',
+                    handler    : handler,
+                    triggerKey : 'p'
+                },
+                {
+                    text       : 'Select <u>A</u>ll',
+                    handler    : handler,
+                    triggerKey : 'a'
+                }
+            ]
+        };
+        var menu = new Ext.menu.Menu({
+            plugins : [ plugin ],
+            id      : 'menu',
+            items   : [
+                editMenu,
+                {
+                    text       : '<u>O</u>pen',
+                    handler    : handler,
+                    triggerKey : 'o'
+                    /* for the future */
+//                    triggerKey : {
+//                        character : 'o',
+//                        instance  : 1
+//                    }
+                },
+                {
+                    text       : '<u>S</u>ave',
+                    handler    : handler,
+                    triggerKey : 's'
+                },
+                {
+                    text       : 'Save <u>A</u>s',
+                    handler    : handler,
+                    triggerKey : 'a'
+                },
+                {
+                    text       : '<u>C</u>lose',
+                    handler    : handler,
+                    triggerKey : 'c'
+                }
+            ]
+        });
+        menu.showAt([50,50]);
+        menu.el.focus();
+
+
+    });
+
+</script>
+</body>
+</html>
+
